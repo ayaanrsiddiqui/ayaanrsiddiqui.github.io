@@ -15,4 +15,4 @@ To make changes to this site locally:
 
 ## 📬 Contact
 - **Email**: [ayaanrsiddiqui@virginia.edu](mailto:ayaanrsiddiqui@virginia.edu)
-- **Website**: [https://ayaansiddiqui.github.io](https://ayaanrsiddiqui.github.io)
+- **Website**: [https://ayaanrsiddiqui.github.io](https://ayaanrsiddiqui.github.io)
