@@ -1,0 +1,15 @@
+# Mac system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node/Python junk (just in case)
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Editor-specific
+.vscode/
+.cursor/
