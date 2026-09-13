@@ -1,51 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayaan Siddiqui | CS @ UVA</title>
-    <style>
-        body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.6; max-width: 650px; margin: 40px auto; padding: 0 20px; color: #333; background-color: #fdfdfd; }
-        h1 { margin-bottom: 5px; letter-spacing: -1px; }
-        .subtitle { color: #666; font-style: italic; margin-bottom: 30px; }
-        section { margin-bottom: 40px; }
-        a { color: #007aff; text-decoration: none; font-weight: 500; }
-        a:hover { text-decoration: underline; }
-        .tag { font-size: 0.8em; background: #eee; padding: 2px 8px; border-radius: 12px; color: #555; margin-right: 5px; }
-        footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 0.9em; color: #777; text-align: center; }
-        footer a { color: inherit; }
-        footer a:hover { color: #007aff; text-decoration: underline; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayaan Siddiqui</title>
+<meta name="description" content="Third-year CS and Mathematics student at UVA. Founding engineer at Axis Health, research assistant at UVA Health, and the author of SmashSet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --paper:#F5F6F2;
+    --raised:#FFFFFF;
+    --ink:#16181D;
+    --ink-2:#4A5157;
+    --ink-3:#7C858C;
+    --rule:#DDE0D8;
+    --rule-2:#EAEDE6;
+    --pine:#1F4D46;
+    --pine-lift:#E4EDEA;
+    --amber:#8E5526;
+    --measure:68ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#0E1113;
+      --raised:#171B1E;
+      --ink:#E8EAE4;
+      --ink-2:#AAB3B5;
+      --ink-3:#7B8589;
+      --rule:#262C30;
+      --rule-2:#1C2124;
+      --pine:#72C2B0;
+      --pine-lift:#122A27;
+      --amber:#D09A63;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1113; --raised:#171B1E; --ink:#E8EAE4; --ink-2:#AAB3B5;
+    --ink-3:#7B8589; --rule:#262C30; --rule-2:#1C2124;
+    --pine:#72C2B0; --pine-lift:#122A27; --amber:#D09A63;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important}}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3',ui-sans-serif,system-ui,-apple-system,sans-serif;
+    font-size:17px;
+    line-height:1.62;
+    margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:812px;margin:0 auto;padding:0 22px 96px}
+
+  a{color:var(--pine);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--pine) 35%,transparent);
+    transition:border-color .15s ease}
+  a:hover{border-bottom-color:var(--pine)}
+  a:focus-visible{outline:2px solid var(--pine);outline-offset:3px;border-radius:2px}
+
+  /* ---------- masthead ---------- */
+  header.top{padding:72px 0 0}
+  h1{
+    font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
+    font-weight:700;
+    font-size:clamp(2.4rem,7vw,3.5rem);
+    line-height:1.0;
+    letter-spacing:-.035em;
+    margin:0 0 18px;
+    text-wrap:balance;
+  }
+  .thesis{
+    font-size:clamp(1.08rem,2.4vw,1.28rem);
+    color:var(--ink-2);
+    max-width:56ch;
+    margin:0 0 26px;
+    line-height:1.5;
+  }
+  .thesis b{color:var(--ink);font-weight:600}
+
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px}
+  .btn{
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:12.5px;letter-spacing:.02em;
+    padding:8px 15px;border:1px solid var(--rule);background:var(--raised);
+    color:var(--ink);border-radius:2px;
+  }
+  .btn:hover{border-color:var(--pine);color:var(--pine)}
+  .btn.primary{background:var(--pine);color:var(--paper);border-color:var(--pine)}
+  .btn.primary:hover{opacity:.88;color:var(--paper)}
+  .whereabouts{
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:12px;color:var(--ink-3);margin:0;padding-bottom:44px;
+    border-bottom:1px solid var(--rule);
+  }
+
+  /* ---------- section heads ---------- */
+  .sec{margin:56px 0 0}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin:0 0 8px}
+  .sec-head h2{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;font-size:1.32rem;letter-spacing:-.018em;margin:0;
+  }
+  .sec-head .count{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);
+  }
+  .sec-note{color:var(--ink-2);max-width:var(--measure);margin:0 0 26px;font-size:15.6px}
+
+  /* ---------- work entries ---------- */
+  .entry{
+    border-top:1px solid var(--rule);
+    padding:26px 0 4px;
+  }
+  .entry:first-of-type{border-top:1.5px solid var(--ink)}
+  .e-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 12px;margin:0 0 3px}
+  .e-head h3{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;font-size:1.24rem;letter-spacing:-.015em;margin:0;
+  }
+  .e-role{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-3);
+    white-space:nowrap;
+  }
+  .e-when{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-3);
+    margin-left:auto;white-space:nowrap;
+  }
+  .e-what{color:var(--ink-2);max-width:var(--measure);margin:0 0 18px;font-size:16px}
+  .e-what strong{color:var(--ink);font-weight:600}
+
+  .points{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:15px}
+  .points li{max-width:var(--measure);padding-left:17px;position:relative}
+  .points li::before{
+    content:"";position:absolute;left:0;top:.62em;
+    width:6px;height:6px;background:var(--pine);border-radius:1px;
+  }
+  .points b{font-weight:600}
+
+  /* the receipt — the thing that makes a claim checkable */
+  .receipt{
+    display:block;
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:11.5px;line-height:1.5;color:var(--amber);
+    margin-top:5px;word-break:break-word;
+  }
+
+  code{
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:.88em;background:var(--rule-2);border:1px solid var(--rule);
+    border-radius:2px;padding:1px 4px;color:var(--ink);
+  }
+
+  .stackline{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-3);
+    border-top:1px dashed var(--rule);padding-top:11px;margin:0 0 4px;
+    word-break:break-word;
+  }
+
+  /* ---------- figures strip ---------- */
+  .figures{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0 0 30px;
+  }
+  .fig{background:var(--raised);padding:14px 15px}
+  .fig b{
+    display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:1.5rem;line-height:1.05;color:var(--pine);
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+  }
+  .fig span{display:block;font-size:12.5px;color:var(--ink-3);margin-top:4px;line-height:1.35}
+
+  /* ---------- stack ---------- */
+  .stack{display:flex;flex-direction:column;gap:13px;margin:0}
+  .row{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:baseline}
+  .row dt{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-3);
+  }
+  .row dd{margin:0;font-size:15.4px;color:var(--ink-2)}
+  @media(max-width:520px){
+    .row{grid-template-columns:1fr;gap:2px}
+  }
+
+  /* ---------- note ---------- */
+  .note{
+    background:var(--pine-lift);border-left:2px solid var(--pine);
+    padding:15px 18px;margin:30px 0 0;max-width:var(--measure);
+  }
+  .note p{margin:0;font-size:15.4px;color:var(--ink-2)}
+  .note p:first-child{color:var(--ink);font-weight:600;margin-bottom:6px}
+
+  footer{
+    margin-top:64px;padding-top:20px;border-top:1px solid var(--rule);
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-3);
+    display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;
+  }
+  footer a{border-bottom-color:transparent;color:var(--ink-3)}
+  footer a:hover{color:var(--pine);border-bottom-color:var(--pine)}
+  .spacer{margin-left:auto}
+  @media(max-width:520px){.spacer{margin-left:0;width:100%}}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Ayaan Siddiqui</h1>
-        <p class="subtitle">Computer Science @ University of Virginia</p>
-    </header>
+<div class="wrap">
 
-    <section>
-        <h2>About</h2>
-        <p>I build clean, scalable software and systems. Currently optimizing my development workflow and exploring AI-native architecture.</p>
-    </section>
+<header class="top">
+  <h1>Ayaan Siddiqui</h1>
+  <p class="thesis">Third-year CS and Mathematics at UVA. <b>Most of the code I've written has had someone's health or privacy on the other end of it</b> — an electronic health record for clinics in Bangladesh, a surgical case atlas inside UVA Health, and the access controls over both.</p>
+  <div class="actions">
+    <a class="btn primary" href="resume.pdf">Résumé&nbsp;(PDF)</a>
+    <a class="btn" href="https://github.com/ayaanrsiddiqui">GitHub</a>
+    <a class="btn" href="https://www.linkedin.com/in/ayaanrsiddiqui/">LinkedIn</a>
+    <a class="btn" href="mailto:ayaanrsiddiqui@virginia.edu">Email</a>
+  </div>
+  <p class="whereabouts">Charlottesville&nbsp;/&nbsp;Manassas,&nbsp;VA · seeking a software engineering internship for summer 2027</p>
+</header>
 
-    <section>
-        <h2>Recent Focus</h2>
-        <ul>
-            <li><strong>Environment Hard Reset</strong> <span class="tag">Systems</span><br>
-            Standardizing my local dev environment with Homebrew, fnm, and isolated Python environments.</li>
-        </ul>
-    </section>
+<section class="sec">
+  <div class="sec-head"><h2>Work</h2><span class="count">four things, in the order I'd want to be asked about them</span></div>
+  <p class="sec-note">Every figure below came off the repository it describes. Where a claim rests on something specific — a file, a measurement, a date — it's named underneath in orange, so you can check it rather than take it.</p>
 
-    <section>
-        <h2>Connect</h2>
-        <p>
-            <a href="https://github.com/ayaanrsiddiqui">GitHub</a> • 
-            <a href="mailto:ayaanrsiddiqui@virginia.edu">Email</a>
-        </p>
-    </section>
+  <article class="entry">
+    <div class="e-head">
+      <h3>SmashSet</h3>
+      <span class="e-role">solo · live</span>
+      <span class="e-when">Aug 2026 — present</span>
+    </div>
+    <p class="e-what">Keyboard-driven set reporting for Super Smash Bros. tournament organizers, built against the start.gg API and live at <a href="https://smashset.gg">smashset.gg</a>. I run tournaments myself; reporting a set through start.gg's own interface takes 15–20 seconds of clicking, and at a local with a hundred sets that's most of an hour spent looking at a laptop instead of at the room. <strong>SmashSet does it in 5–10 seconds, entirely from the keyboard.</strong></p>
 
-    <footer>
-        <p>© 2026 Ayaan Siddiqui · <a href="https://github.com/ayaanrsiddiqui">GitHub</a> · <a href="https://www.linkedin.com/in/ayaanrsiddiqui/">LinkedIn</a></p>
-    </footer>
+    <div class="figures">
+      <div class="fig"><b>113</b><span>source files</span></div>
+      <div class="fig"><b>41</b><span>test modules</span></div>
+      <div class="fig"><b>9,299</b><span>lines of test, against 10,385 of source</span></div>
+      <div class="fig"><b>2</b><span>events run on it so far</span></div>
+    </div>
+
+    <ul class="points">
+      <li><b>An OAuth 2.0 flow written directly rather than through a library</b> — authorization-code exchange, concurrent-safe token refresh, AES-256-GCM encryption of tokens at rest. The client secret stays out of the authorize URL that start.gg's own published example puts it in, because that URL is a front-channel browser redirect and lands in history, referrers and logs.
+        <span class="receipt">server/src/startggOAuth.ts · scoped to user.identity + tournament.reporter, nothing wider</span></li>
+
+      <li><b>A production outage, and the fix that wasn't a smaller number.</b> The bracket stopped loading because a query-cost constant had been measured once and then hardcoded; adding fields to the query silently pushed a page past the API's object cap. Pagination now derives page size from a declared cost-per-row, reads the cost the API reports back on every response, and resizes itself when a request is rejected. A scheduled contract test re-measures against the live API daily and fails when reality drifts.
+        <span class="receipt">server/src/routes/sets.ts — fetchSetsPaged · .github/workflows/startgg-canary.yml</span></li>
+
+      <li><b>Reports queue to an outbox and deliver behind the organizer.</b> Venue wifi produced a measured 25-second freeze against a socket that accepts a connection and never answers. Delivery now retries with capped exponential backoff and jitter. Deliberately not optimistic: nothing reads as reported until the API confirms it, because an organizer who sees a tick and walks away leaves a set unreported. Retries are made safe by a stricter server-side rule rather than an idempotency key — the upstream refuses to re-report a finished set, so the ambiguous timeout resolves without inventing one.
+        <span class="receipt">web/src/outbox.ts · up to 25 s of frozen UI, measured on venue wifi</span></li>
+    </ul>
+    <p class="stackline">TypeScript · React · Express · PostgreSQL · GraphQL · OAuth 2.0 · Railway · GitHub Actions</p>
+  </article>
+
+  <article class="entry">
+    <div class="e-head">
+      <h3>Axis Health</h3>
+      <span class="e-role">founding engineer · sole engineer</span>
+      <span class="e-when">May 2026 — present</span>
+    </div>
+    <p class="e-what">An early-stage startup building an electronic health record for clinics in Bangladesh, where no widespread EHR exists. I took it from a Figma file to beta builds on TestFlight and the Play Store, and I'm the only engineer on it. <strong>A monorepo spanning a React web app, an Expo mobile client and a FastAPI backend, with the shared business logic in one TypeScript package so the two clients can't drift apart.</strong></p>
+
+    <div class="figures">
+      <div class="fig"><b>22.6K</b><span>medication formulary</span></div>
+      <div class="fig"><b>160K</b><span>drug-interaction pairs</span></div>
+      <div class="fig"><b>k=11</b><span>anonymity floor on every export</span></div>
+      <div class="fig"><b>1,744</b><span>strings, in each of two languages</span></div>
+    </div>
+
+    <ul class="points">
+      <li><b>A clinical drug-safety engine that blocks a prescription before it can be sent</b> — allergy contraindications and high-severity interactions, hard-blocked at the point of prescription rather than warned about afterwards.
+        <span class="receipt">formulary and interaction data sourced from MedEx and DDInter</span></li>
+
+      <li><b>The de-identification layer over everything an administrator can see.</b> k-anonymity small-cell suppression at k=11, the HHS/CMS convention, plus complementary suppression and age/region generalization on every analytics export. Paired with a chart authorization model where privilege narrows as it rises: a doctor needs an active care-panel relationship rather than the doctor role alone, and administrators are denied individual patient charts entirely while keeping aggregate analytics.
+        <span class="receipt">app/core/deident.py · app/core/access.py — admins see populations, never people</span></li>
+
+      <li><b>Diagnosed platform-wide latency to two distinct bottlenecks and fixed both.</b> Per-keystroke sequential scans over the formulary became PostgreSQL trigram GIN indexes, after a leading-wildcard <code>ILIKE</code> turned out to defeat the B-tree index that was already there; redundant full-table reloads became a thread-safe TTL cache.
+        <span class="receipt">pg_trgm + gin_trgm_ops · 17 Alembic migrations, 16 pytest modules, run in CI against a Postgres service container on every push</span></li>
+    </ul>
+    <p class="stackline">Python · FastAPI · TypeScript · React · React Native (Expo) · PostgreSQL · SQLAlchemy · Docker · Railway</p>
+  </article>
+
+  <article class="entry">
+    <div class="e-head">
+      <h3>Facial Reconstruction Atlas</h3>
+      <span class="e-role">UVA Health, Otolaryngology</span>
+      <span class="e-when">May 2026 — present</span>
+    </div>
+    <p class="e-what">A searchable atlas of facial plastic surgery reconstruction cases, for surgical education inside UVA Health. I'm the sole technical member of the research team. <strong>The most useful thing I did on it involved no code at all.</strong></p>
+
+    <ul class="points">
+      <li><b>I read the governing IRB protocol and the patient consent forms before development started, and found a HIPAA blocker nobody had caught</b> — the team's plan to share patient photographs with surgeons outside UVA wasn't supported by the consent patients had actually given. I spent four months as the sole technical liaison across UVA Research Computing, Health IT and the department chair, and proposed the internal-only pivot that unblocked hosting approval.
+        <span class="receipt">IRB protocol 18181 · scope reframed before a line of the application was written</span></li>
+
+      <li><b>Patient media is served through a single server-side chokepoint, never a direct file URL.</b> Three independent path-traversal checks, an extension allowlist, and PBKDF2-SHA256 session authentication extended to every data endpoint. That one-door design is what makes per-user authorization and access logging a single instrumentation layer instead of a re-architecture.
+        <span class="receipt">21 endpoints · 143 de-identified cases · 16-page security review authored for the hosting evaluation</span></li>
+    </ul>
+    <p class="stackline">Python · FastAPI · SQLite · JavaScript · institutional review, security documentation</p>
+  </article>
+
+  <article class="entry">
+    <div class="e-head">
+      <h3>RAG Evaluation Framework</h3>
+      <span class="e-role">team of five · client: LMI</span>
+      <span class="e-when">Nov 2024 — Jun 2025</span>
+    </div>
+    <p class="e-what">A benchmark measuring how retrieval-augmented generation performs on questions that need several documents to answer. I owned the measurement and persistence layer — the LLM-as-judge scoring, the SQLite schema, and the dashboard the team read results in. <strong>The interesting part is what the data showed.</strong></p>
+
+    <ul class="points">
+      <li><b>The pipeline failed in different ways depending on the reasoning the question required, and the two halves failed on opposite categories.</b> Inference queries were hardest to retrieve for — recall 0.31 against 0.46 on comparison queries — but when the model did answer them it stayed grounded, at 0.85 faithfulness. Temporal queries were the reverse and the more worrying case: retrieval was fine, and faithfulness collapsed to 0.30. Those are two different fixes, and neither is visible in the aggregate.
+        <span class="receipt">2,255 scored responses · segmented by query type, because the overall faithfulness number of 0.55 says nothing</span></li>
+    </ul>
+    <p class="stackline">Python · DeepEval · LangChain · ChromaDB · SQLite · Streamlit</p>
+  </article>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><h2>Also</h2></div>
+  <dl class="stack">
+    <div class="row"><dt>Teaching</dt><dd>Undergraduate TA and engineering tutor for systems programming at UVA — 30+ students a week in office hours and lab sections, most of it hands-on debugging in C and at the Linux command line.</dd></div>
+    <div class="row"><dt>Robotics</dt><dd>Mechatronics and Robotics Society at UVA. Built the first prototype of the drive team's React telemetry control station for the NASA Lunabotics Challenge, and authored the team's STEM Industry Plan competition deliverable as Outreach Chair.</dd></div>
+    <div class="row"><dt>Before UVA</dt><dd>Thomas Jefferson HSST, 2024. A sequence in artificial intelligence, machine learning and computer vision where things were built from first principles — backpropagation derived by hand rather than called, Canny and a Hough circle transform written in C++ before being rebuilt with OpenCV.</dd></div>
+  </dl>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><h2>Stack</h2></div>
+  <dl class="stack">
+    <div class="row"><dt>Languages</dt><dd>Python · TypeScript · JavaScript · SQL · Java · C/C++</dd></div>
+    <div class="row"><dt>Web</dt><dd>FastAPI · Django · React · React Native · Node.js / Express · Next.js · REST · GraphQL</dd></div>
+    <div class="row"><dt>Data</dt><dd>PostgreSQL · SQLite · trigram and GIN indexing · schema migrations</dd></div>
+    <div class="row"><dt>Security</dt><dd>OAuth 2.0 / OIDC · JWT and JWKS · AES-256-GCM · PBKDF2 · role-based access control · k-anonymity</dd></div>
+    <div class="row"><dt>Operations</dt><dd>Linux · Docker · GitHub Actions · Railway · Heroku · Vercel · pytest · Vitest</dd></div>
+  </dl>
+
+  <div class="note">
+    <p>A note on the numbers</p>
+    <p>Every count on this page is one I can reproduce — <code>find</code>, <code>wc</code>, <code>git</code>, or a query against the database it describes. If any of it comes up in conversation I'd rather walk you through the mechanism than the adjective, and where something is a limitation I'd rather say so first.</p>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Ayaan Siddiqui</span>
+  <a href="https://github.com/ayaanrsiddiqui">github.com/ayaanrsiddiqui</a>
+  <a href="mailto:ayaanrsiddiqui@virginia.edu">ayaanrsiddiqui@virginia.edu</a>
+  <span class="spacer">last updated September 2026</span>
+</footer>
+
+</div>
 </body>
 </html>
